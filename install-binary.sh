@@ -2,7 +2,7 @@
 
 set -ueo pipefail
 
-VERSION=0.0.1
+VERSION=v0.0.1
 
 function isAlreadyInstalled() {
   hash helm-vault-template 2>/dev/null && [[ $(helm-vault-template -v | cut -d " " -f 3) == ${VERSION} ]]
