@@ -55,6 +55,12 @@ func (r *renderer) renderSingleFile(inputFilePath, outputFilePath string) (err e
 			return
 		}
 	}
+
+	if outputFilePath == "-" {
+		fmt.Printf("%v", renderedContent)
+		return
+	}
+
 	// make output path
 	outputDirectory := filepath.Dir(outputFilePath)
 	err = os.MkdirAll(outputDirectory, 0755)

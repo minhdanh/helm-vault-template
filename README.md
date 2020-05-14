@@ -52,3 +52,9 @@ config:
   username: admin
   password: P@ssw0rd
 ```
+
+You can also print the output file to stdout:
+
+```bash
+helm vault-template render values.vault.yaml -
+```
