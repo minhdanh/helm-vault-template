@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"gopkg.in/urfave/cli.v1"
@@ -73,6 +74,7 @@ func main() {
 	err := app.Run(os.Args)
 
 	if err != nil {
-		panic(err)
+		fmt.Printf("Error rendering file: %v", err)
+		os.Exit(1)
 	}
 }
