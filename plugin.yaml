@@ -1,5 +1,5 @@
 name: vault-template
-version: 0.1.0
+version: 0.1.1
 usage: Render a template file with Vault paths to a file
 description: |-
   This plugin intergrates with Vault to render a template file with Vault paths to a file. Useful to prepare a values.yaml file to deploy a helm chart.
