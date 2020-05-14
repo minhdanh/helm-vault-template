@@ -52,20 +52,32 @@ func main() {
 			Name:  "render",
 			Usage: "render a template with values from Vault into a file",
 			Action: func(c *cli.Context) error {
-				if c.NArg() < 2 {
-					cli.ShowCommandHelpAndExit(c, "render", 1)
-				}
-
 				renderer, err := createRenderer(c)
 
 				if err != nil {
 					return err
 				}
 
-				inputFile := c.Args().Get(0)
-				outputFile := c.Args().Get(1)
+				if c.NArg() == 0 {
+					stat, err := os.Stdin.Stat()
+					if err != nil {
+						return err
+					}
+					if stat.Mode()&os.ModeNamedPipe == 0 {
+						cli.ShowCommandHelpAndExit(c, "render", 1)
+					} else {
+						return renderer.renderFromStdinToStdout()
+					}
 
-				return renderer.renderSingleFile(inputFile, outputFile)
+				} else if c.NArg() == 2 {
+					inputFile := c.Args().Get(0)
+					outputFile := c.Args().Get(1)
+
+					return renderer.renderSingleFile(inputFile, outputFile)
+				} else {
+					cli.ShowCommandHelpAndExit(c, "render", 1)
+				}
+				return nil
 			},
 			ArgsUsage: "[input file] [output file]",
 		},
