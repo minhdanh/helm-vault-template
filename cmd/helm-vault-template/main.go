@@ -8,7 +8,7 @@ import (
 	"gopkg.in/urfave/cli.v1/altsrc"
 )
 
-var Version = "0.0.1"
+var Version = "v0.1.2"
 
 func createRenderer(c *cli.Context) (*renderer, error) {
 	cfg := rendererConfig{
