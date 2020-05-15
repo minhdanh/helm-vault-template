@@ -2,7 +2,7 @@
 
 set -ueo pipefail
 
-VERSION=v0.1.2
+VERSION=v0.1.3
 
 export PLUGIN_DIR=$(dirname "$0")
 
@@ -20,7 +20,7 @@ else
   temp_file=$(mktemp)
   trap "rm ${temp_file}" EXIT
 
-  statuscode=$(curl -w "%{http_code}" -sL ${URL} -o ${temp_file})
+  statuscode=$(curl -w "%{http_code}" -L ${URL} -o ${temp_file})
 
   if [[ ! "${statuscode}" == "200" ]]; then
     echo "Failed to download binary"

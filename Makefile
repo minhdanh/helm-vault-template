@@ -1,4 +1,4 @@
-VERSION=v0.1.2
+VERSION=v0.1.3
 LDFLAGS=-ldflags "-X main.Version=$(VERSION)"
 .PHONY: build release-bin clean
 
